@@ -95,7 +95,7 @@ function App() {
         <h1 className="wordle-header">Word Guess</h1>
         <div className="wordle-input">
           <input type="text" id="guessInput" placeholder="Enter your guess" autoComplete="off" />
-          <button id="submitGuess" onClick={checkGuess}>Check</button>
+          {remainingGuesses > 0 && <button id="submitGuess" onClick={checkGuess}>Check</button>}
         </div>
         <p className="wordle-feedback" id="feedback">{feedback}</p>
         <p className="wordle-guesses" id="guessCount">Guesses: {remainingGuesses}</p>
