@@ -1,5 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import './App.css';
+import { Amplify, Auth } from 'aws-amplify';
+import { withAuthenticator } from '@aws-amplify/ui-react';
+import '@aws-amplify/ui-react/styles.css';
+import config from './amplifyconfiguration.json';
+import { signOut } from 'aws-amplify/auth';
+import './App.css'; 
+
+Amplify.configure(config);
 
 function App() {
   const [remainingGuesses, setRemainingGuesses] = useState(5);
@@ -74,17 +81,28 @@ function App() {
     decrementGuessCount();
   };
 
+  const handleSignOut = async () => {
+    try {
+      await signOut();
+    } catch (error) {
+      console.error('Error signing out:', error);
+    }
+  };
+
   return (
-    <div className="wordle-container">
-      <h1 className="wordle-header">Word Guess</h1>
-      <div className="wordle-input">
-        <input type="text" id="guessInput" placeholder="Enter your guess" autoComplete="off" />
-        <button id="submitGuess" onClick={checkGuess}>Check</button>
+    <div>
+      <div className="wordle-container">
+        <h1 className="wordle-header">Word Guess</h1>
+        <div className="wordle-input">
+          <input type="text" id="guessInput" placeholder="Enter your guess" autoComplete="off" />
+          <button id="submitGuess" onClick={checkGuess}>Check</button>
+        </div>
+        <p className="wordle-feedback" id="feedback">{feedback}</p>
+        <p className="wordle-guesses" id="guessCount">Guesses: {remainingGuesses}</p>
+        <button className="sign-out-button" onClick={handleSignOut}>Sign Out</button>
       </div>
-      <p className="wordle-feedback" id="feedback">{feedback}</p>
-      <p className="wordle-guesses" id="guessCount">Guesses: {remainingGuesses}</p>
     </div>
   );
 }
 
-export default App;
+export default withAuthenticator(App);

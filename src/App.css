@@ -1,3 +1,4 @@
+
 body {
   font-family: Arial, sans-serif;
   display: flex;
@@ -8,7 +9,7 @@ body {
   background-color: #f8f8f8;
 }
 .wordle-container {
-  background-color: #4CAF50;
+  background-color: #e10e7b;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -43,7 +44,7 @@ body {
   transition: background-color 0.3s;
 }
 .wordle-input button:hover {
-  background-color: #e0e0e0;
+  background-color: #c0c0c0;
 }
 .wordle-feedback {
   text-align: center;
@@ -56,4 +57,23 @@ body {
 .wordle-guesses {
   text-align: center;
   color: white;
+}
+
+.sign-out-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #f8f8f8;
+  color: #4CAF50;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 20px; 
+  display: block; 
+  margin-left: auto; 
+  margin-right: auto; 
+}
+
+.sign-out-button:hover {
+  background-color: #c0c0c0;
 }
